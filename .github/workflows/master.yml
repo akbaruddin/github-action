@@ -1,4 +1,4 @@
-name: MasterDeployCI
+name: MasterDeployCIAstro
 on:
   push:
     branches:
