@@ -29,7 +29,7 @@ jobs:
     - run: pnpm install
     - run: pnpm run build
     - name: Zip Folder
-      run: zip -r release.zip ./dist -x
+      run: zip -r release.zip ./dist
     - name: Release to Github
       run: echo "Release"
     - name: Create Release Folder
