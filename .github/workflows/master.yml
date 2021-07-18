@@ -28,3 +28,18 @@ jobs:
         run_install: true
     - run: pnpm install
     - run: pnpm run build
+    - name: Zip Folder
+      run: zip -r release.zip ./dist -x
+    - name: Release to Github
+      run: echo "Release"
+    - name: Create Release Folder
+      run: rsync -arv --exclude='.git/' --exclude='.github/' --exclude='.gitignore' ./dist ./release
+    - name: Switch to Release Folder
+      run: |
+        cd release
+        ls -la
+    - name: Bump version and push tag
+      uses: anothrNick/github-tag-action@master
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        REPO_OWNER: keithweaver
